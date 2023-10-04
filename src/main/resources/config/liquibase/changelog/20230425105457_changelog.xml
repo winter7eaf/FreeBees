@@ -1,0 +1,267 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="catie (generated)" id="1682420100663-4">
+        <createTable tableName="handoff">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="handoffPK"/>
+            </column>
+            <column name="end_time" type="TIMESTAMP"/>
+            <column name="start_time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="state" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="giver_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="item_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rate_to_giver_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rate_to_receiver_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="receiver_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-5">
+        <createTable tableName="item_image">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="item_imagePK"/>
+            </column>
+            <column name="image" type="BLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_content_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="item_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-6">
+        <createTable tableName="rate_record">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="rate_recordPK"/>
+            </column>
+            <column name="rate_value" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ratee_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rater_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-7">
+        <createTable tableName="rel_tag__user">
+            <column name="tag_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="rel_tag__userPK"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="rel_tag__userPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-8">
+        <createTable tableName="request">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="requestPK"/>
+            </column>
+            <column name="expiry_time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="response_time" type="TIMESTAMP"/>
+            <column name="sent_time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="state" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="item_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="requestee_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="requester_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-9">
+        <createTable tableName="user_profile">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_profilePK"/>
+            </column>
+            <column name="description" type="VARCHAR"/>
+            <column name="postcode" type="VARCHAR(12)"/>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-10">
+        <createTable tableName="user_rate">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_ratePK"/>
+            </column>
+            <column name="rate_as_giver" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rate_as_receiver" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-11">
+        <addColumn tableName="item">
+            <column name="condition" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-12">
+        <addColumn tableName="item">
+            <column name="given_time" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-13">
+        <addColumn tableName="item">
+            <column name="giver_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-14">
+        <addColumn tableName="item">
+            <column name="postcode" type="varchar(12)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-15">
+        <addColumn tableName="item">
+            <column name="receiver_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-16">
+        <addColumn tableName="item">
+            <column name="state" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-17">
+        <addColumn tableName="item">
+            <column name="upload_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-18">
+        <addUniqueConstraint columnNames="name" constraintName="UC_TAGNAME_COL" tableName="tag"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-19">
+        <addUniqueConstraint columnNames="ratee_id" constraintName="UK_3r85c3ylikyawm6yo8pca7f82" tableName="rate_record"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-20">
+        <addUniqueConstraint columnNames="rate_to_giver_id" constraintName="UK_63foxer9jv8gwo097eo7778p6" tableName="handoff"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-21">
+        <addUniqueConstraint columnNames="rate_to_receiver_id" constraintName="UK_d2lejhra81ix6bklak3w5i08" tableName="handoff"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-22">
+        <addUniqueConstraint columnNames="user_id" constraintName="UK_ebc21hy5j7scdvcjt0jy6xxrv" tableName="user_profile"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-23">
+        <addUniqueConstraint columnNames="rater_id" constraintName="UK_hkwvdjekfyd2qhfialnlkjmkq" tableName="rate_record"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-24">
+        <addUniqueConstraint columnNames="user_id" constraintName="UK_sdmrpek26nkdek3vndyvoujbf" tableName="user_rate"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-25">
+        <addForeignKeyConstraint baseColumnNames="giver_id" baseTableName="handoff" constraintName="FK4gqh5upqaey5kh7v5sopmdvbq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-26">
+        <addForeignKeyConstraint baseColumnNames="rate_to_receiver_id" baseTableName="handoff" constraintName="FK6y4vwt33drqlx0ajrgstmm5pe" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="rate_record" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-27">
+        <addForeignKeyConstraint baseColumnNames="ratee_id" baseTableName="rate_record" constraintName="FK8163uen47893x58tqua8atjhk" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-28">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_rate" constraintName="FKbpyj1o8w6831kr3376vdw0jaf" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-29">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_profile" constraintName="FKe6flr37yyfrpsfci9urd0t0m3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-30">
+        <addForeignKeyConstraint baseColumnNames="item_id" baseTableName="handoff" constraintName="FKfisua327r9x99yl2jgtms7mle" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="item" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-31">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="rel_tag__user" constraintName="FKjskagn1hcxqdohnt9byn4h0ah" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-32">
+        <addForeignKeyConstraint baseColumnNames="tag_id" baseTableName="rel_tag__user" constraintName="FKlifpyccgypl71uxu9emw9uh5v" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="tag" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-33">
+        <addForeignKeyConstraint baseColumnNames="receiver_id" baseTableName="handoff" constraintName="FKmfmm2f8glhegs0gssh56g1hax" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-34">
+        <addForeignKeyConstraint baseColumnNames="requestee_id" baseTableName="request" constraintName="FKorol8jttoicxc81nqgr0w3gnb" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-35">
+        <addForeignKeyConstraint baseColumnNames="giver_id" baseTableName="item" constraintName="FKoxegv505xtb10cgncomo0i18y" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-36">
+        <addForeignKeyConstraint baseColumnNames="rater_id" baseTableName="rate_record" constraintName="FKr4v8x6o2gpo63870d0qefb2g5" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-37">
+        <addForeignKeyConstraint baseColumnNames="item_id" baseTableName="request" constraintName="FKrwwdrii5oq7ncw16umhj11t5" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="item" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-38">
+        <addForeignKeyConstraint baseColumnNames="requester_id" baseTableName="request" constraintName="FKsoux1783m4l3p7j1742s7r74d" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-39">
+        <addForeignKeyConstraint baseColumnNames="receiver_id" baseTableName="item" constraintName="FKsu1l8h4bv6q49sjyv8v0as5v4" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-40">
+        <addForeignKeyConstraint baseColumnNames="rate_to_giver_id" baseTableName="handoff" constraintName="FKt1s1frivkmgtiomq6wfkaw0xw" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="rate_record" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-41">
+        <addForeignKeyConstraint baseColumnNames="item_id" baseTableName="item_image" constraintName="FKta6kqet3u8mv95y7jwtgwqpys" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="item" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-42">
+        <dropForeignKeyConstraint baseTableName="ITEM" constraintName="FK_ITEM__USER_ID"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-43">
+        <dropColumn columnName="IMAGE" tableName="ITEM"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-44">
+        <dropColumn columnName="IMAGE_CONTENT_TYPE" tableName="ITEM"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-45">
+        <dropColumn columnName="USER_ID" tableName="ITEM"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-1">
+        <alterSequence incrementBy="50" sequenceName="sequence_generator"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-2">
+        <dropUniqueConstraint constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682420100663-3">
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,63 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="catie (generated)" id="1682456844554-8">
+        <addForeignKeyConstraint baseColumnNames="giver_id" baseTableName="handoff" constraintName="FK4gqh5upqaey5kh7v5sopmdvbq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-9">
+        <addForeignKeyConstraint baseColumnNames="rate_to_receiver_id" baseTableName="handoff" constraintName="FK6y4vwt33drqlx0ajrgstmm5pe" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="rate_record" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-10">
+        <addForeignKeyConstraint baseColumnNames="ratee_id" baseTableName="rate_record" constraintName="FK8163uen47893x58tqua8atjhk" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-11">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_rate" constraintName="FKbpyj1o8w6831kr3376vdw0jaf" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-12">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_profile" constraintName="FKe6flr37yyfrpsfci9urd0t0m3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-13">
+        <addForeignKeyConstraint baseColumnNames="item_id" baseTableName="handoff" constraintName="FKfisua327r9x99yl2jgtms7mle" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="item" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-14">
+        <addForeignKeyConstraint baseColumnNames="receiver_id" baseTableName="handoff" constraintName="FKmfmm2f8glhegs0gssh56g1hax" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-15">
+        <addForeignKeyConstraint baseColumnNames="requestee_id" baseTableName="request" constraintName="FKorol8jttoicxc81nqgr0w3gnb" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-16">
+        <addForeignKeyConstraint baseColumnNames="rater_id" baseTableName="rate_record" constraintName="FKr4v8x6o2gpo63870d0qefb2g5" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-17">
+        <addForeignKeyConstraint baseColumnNames="item_id" baseTableName="request" constraintName="FKrwwdrii5oq7ncw16umhj11t5" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="item" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-18">
+        <addForeignKeyConstraint baseColumnNames="requester_id" baseTableName="request" constraintName="FKsoux1783m4l3p7j1742s7r74d" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-19">
+        <addForeignKeyConstraint baseColumnNames="rate_to_giver_id" baseTableName="handoff" constraintName="FKt1s1frivkmgtiomq6wfkaw0xw" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="rate_record" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-20">
+        <addForeignKeyConstraint baseColumnNames="item_id" baseTableName="item_image" constraintName="FKta6kqet3u8mv95y7jwtgwqpys" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="item" validate="true"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-1">
+        <alterSequence incrementBy="50" sequenceName="sequence_generator"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-2">
+        <dropUniqueConstraint constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-3">
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-4">
+        <dropUniqueConstraint constraintName="UK_d2lejhra81ix6bklak3w5i08" tableName="handoff"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-5">
+        <addUniqueConstraint columnNames="rate_to_receiver_id" constraintName="UK_d2lejhra81ix6bklak3w5i08" tableName="handoff"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-6">
+        <dropUniqueConstraint constraintName="UK_hkwvdjekfyd2qhfialnlkjmkq" tableName="rate_record"/>
+    </changeSet>
+    <changeSet author="catie (generated)" id="1682456844554-7">
+        <addUniqueConstraint columnNames="rater_id" constraintName="UK_hkwvdjekfyd2qhfialnlkjmkq" tableName="rate_record"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,81 @@
+:root {
+  /*Light mode*/
+  --primary-color: #03a9f4;
+  --accent-color: #ffffff;
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+body.dark-theme {
+  /*Dark mode*/
+  --primary-color: #03a9f4;
+  --accent-color: #ffffff;
+  --background-color: #303030;
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: sans-serif(--text-color);
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--accent-color);
+}
+
+card jh-card {
+  background-color: var(--background-color);
+}
+
+div.card.jh-card {
+  background-color: var(--background-color);
+}
+
+div.flex {
+  color: var(--text-color);
+}
+
+table.table-spried {
+  color: var(--text-color);
+}
+
+.navbar-container {
+  background-color: #000000;
+}
+
+.custom-text-color {
+  color: var(--text-color);
+}
+
+div.d-flex {
+  color: var(--text-color);
+}
+
+td.custom-td-text-color {
+  color: var(--text-color);
+}
+
+div#entities.table-responsive.table-eneities {
+  color: var(--text-color);
+}
+
+table.custom-td-text-color {
+  color: var(--text-color);
+}
+
+.custom-striped-table {
+  --bs-table-accent-bg: var(--background-color);
+  --bs-table-striped-color: var(--text-color);
+  --bs-table-striped-bg: var(--background-color);
+  --bs-table-active-color: var(--text-color);
+  --bs-table-active-bg: var(--background-color);
+  --bs-table-hover-color: var(--text-color);
+  --bs-table-hover-bg: var(--background-color);
+}
+
+.custom-striped-table td,
+.custom-striped-table th {
+  color: var(--text-color);
+}

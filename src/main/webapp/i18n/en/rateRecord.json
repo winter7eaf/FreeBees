@@ -1,0 +1,27 @@
+{
+  "teamprojectApp": {
+    "rateRecord": {
+      "home": {
+        "title": "Rate Records",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Rate Record",
+        "createOrEditLabel": "Create or edit a Rate Record",
+        "notFound": "No Rate Records found"
+      },
+      "created": "A new Rate Record is created with identifier {{ param }}",
+      "updated": "A Rate Record is updated with identifier {{ param }}",
+      "deleted": "A Rate Record is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Rate Record {{ id }}?"
+      },
+      "detail": {
+        "title": "Rate Record"
+      },
+      "id": "ID",
+      "rateValue": "Rate Value",
+      "rater": "Rater",
+      "ratee": "Ratee",
+      "handoffRef": "Handoff Ref"
+    }
+  }
+}

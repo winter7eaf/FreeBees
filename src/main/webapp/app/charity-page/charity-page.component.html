@@ -1,0 +1,88 @@
+<div class="content">
+  <!-- Main header -->
+  <h1 class="title">Donate Your Items to Charities with our help!</h1>
+
+  <div>
+    <!-- Introductory paragraph -->
+    <h4>Giving your unwanted items a new life by donating them to charities is a wonderful way to serve a greater cause!</h4>
+    <h4>Not only do you declutter your space, but you also help those in need and support the vital work of charitable organizations.</h4>
+  </div>
+
+  <div class="textContainer">
+    <div class="sectionContainer">
+      <h2>Why Donate to Charities?</h2>
+      <p>
+        When you donate your items to charities, you contribute to their mission of helping people, animals, or the environment. Your
+        donations can be used directly by those in need, sold in charity shops to raise funds, or repurposed in various ways to support the
+        organization's activities.
+      </p>
+    </div>
+    <div class="sectionContainer">
+      <h2>Choose a Charity to Support</h2>
+      <p>
+        We've compiled a list of reputable charities that accept item donations. Browse through their profiles, learn about their missions,
+        and find the one that resonates with you. By donating your items to one of these charities, you can make a real difference in the
+        lives of those they support.
+      </p>
+    </div>
+  </div>
+
+  <!-- List of charities -->
+  <div>
+    <h2>List of Charities</h2>
+    <div class="gridContainer">
+      <div class="gridItem" *ngFor="let charity of charities">
+        <div *ngIf="charity.user; then thenBlock; else elseBlock"></div>
+
+        <ng-template #thenBlock>
+          <div class="gridItemImage">
+            <img *ngIf="charity.logoURL" src="{{ charity.logoURL }}" alt="{{ charity.charityName }} logo" />
+            <img
+              *ngIf="!charity.logoURL"
+              src="https://i.pinimg.com/736x/62/b9/85/62b9851f99c3fd160709b4680a908f00--night-nurse-mystery-box.jpg"
+              alt="No Logo"
+            />
+          </div>
+          <div class="gridItemTextField">
+            <div>
+              <h3>{{ charity.charityName }}</h3>
+              <h5 class="partnerCharity">Partner</h5>
+              <p>{{ charity.description }}</p>
+            </div>
+            <a class="websiteButton" href="{{ charity.website }}" target="_blank">
+              <p>Go to Website</p>
+              <fa-icon icon="arrow-right"></fa-icon>
+            </a>
+          </div>
+        </ng-template>
+
+        <ng-template #elseBlock>
+          <div class="gridItemImage">
+            <img *ngIf="charity.logoURL" src="{{ charity.logoURL }}" alt="{{ charity.charityName }} logo" />
+            <img
+              *ngIf="!charity.logoURL"
+              src="https://i.pinimg.com/736x/62/b9/85/62b9851f99c3fd160709b4680a908f00--night-nurse-mystery-box.jpg"
+              alt="No Logo"
+            />
+          </div>
+          <div class="gridItemTextField">
+            <div>
+              <h3>{{ charity.charityName }}</h3>
+              <p>{{ charity.description }}</p>
+            </div>
+            <a class="websiteButton" href="{{ charity.website }}" target="_blank">
+              <p>Go to Website</p>
+              <fa-icon icon="arrow-right"></fa-icon>
+            </a>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <!-- Encouragement to donate -->
+  <div class="donate">
+    <h3>Thank you for considering donating your unwanted items to charities!</h3>
+    <h3>Together, we can create a positive impact and support the important work of these organizations.</h3>
+  </div>
+</div>

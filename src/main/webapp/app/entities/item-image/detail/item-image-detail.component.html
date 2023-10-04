@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="itemImage">
+      <h2 data-cy="itemImageDetailsHeading"><span jhiTranslate="teamprojectApp.itemImage.detail.title">Item Image</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ itemImage.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.itemImage.image">Image</span></dt>
+        <dd>
+          <div *ngIf="itemImage.image">
+            <a (click)="openFile(itemImage.image, itemImage.imageContentType)">
+              <img
+                [src]="'data:' + itemImage.imageContentType + ';base64,' + itemImage.image"
+                style="max-width: 100%"
+                alt="itemImage image"
+              />
+            </a>
+            {{ itemImage.imageContentType }}, {{ byteSize(itemImage.image) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.itemImage.item">Item</span></dt>
+        <dd>
+          <div *ngIf="itemImage.item">
+            <a [routerLink]="['/item', itemImage.item.id, 'view']">{{ itemImage.item.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/item-image', itemImage.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

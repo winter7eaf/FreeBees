@@ -1,0 +1,116 @@
+<div>
+  <h2 id="page-heading" data-cy="UserProfileHeading">
+    <span jhiTranslate="teamprojectApp.userProfile.home.title">User Profiles</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="teamprojectApp.userProfile.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-user-profile"
+        [routerLink]="['/user-profile/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="teamprojectApp.userProfile.home.createLabel"> Create a new User Profile </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="userProfiles?.length === 0">
+    <span jhiTranslate="teamprojectApp.userProfile.home.notFound">No User Profiles found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="userProfiles && userProfiles.length > 0">
+    <table class="table table-striped custom-striped-table" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.userProfile.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="postcode">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.userProfile.postcode">Postcode</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="user.login">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.userProfile.user">User</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lookingfor.name">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.userProfile.lookingfor">Lookingfor</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let userProfile of userProfiles; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/user-profile', userProfile.id, 'view']">{{ userProfile.id }}</a>
+          </td>
+          <td>{{ userProfile.description }}</td>
+          <td>{{ userProfile.postcode }}</td>
+          <td>
+            {{ userProfile.user?.login }}
+          </td>
+          <td>
+            <span *ngFor="let lookingfor of userProfile.lookingfors; let last = last">
+              <a class="form-control-static" [routerLink]="['/tag', lookingfor.id, 'view']">{{ lookingfor.name }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/user-profile', userProfile.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/user-profile', userProfile.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(userProfile)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

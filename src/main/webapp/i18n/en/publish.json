@@ -1,0 +1,16 @@
+{
+  "publish": {
+    "title": "Publish",
+    "item": {
+      "title": "Title  *",
+      "description": "Description *",
+      "condition": "Condition *",
+      "image": "Image *",
+      "postcode": "Postcode *"
+    },
+    "action": {
+      "cancel": "Cancel",
+      "publish": "Publish"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="request">
+      <h2 data-cy="requestDetailsHeading"><span jhiTranslate="teamprojectApp.request.detail.title">Request</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ request.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.request.type">Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'teamprojectApp.RequestType.' + request.type }}">{{ request.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.request.state">State</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'teamprojectApp.RequestState.' + request.state }}">{{ request.state }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.request.sentTime">Sent Time</span></dt>
+        <dd>
+          <span>{{ request.sentTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.request.expiryTime">Expiry Time</span></dt>
+        <dd>
+          <span>{{ request.expiryTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.request.responseTime">Response Time</span></dt>
+        <dd>
+          <span>{{ request.responseTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.request.requester">Requester</span></dt>
+        <dd>
+          <span>{{ request.requester?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.request.requestee">Requestee</span></dt>
+        <dd>
+          <span>{{ request.requestee?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.request.item">Item</span></dt>
+        <dd>
+          <div *ngIf="request.item">
+            <a [routerLink]="['/item', request.item.id, 'view']">{{ request.item.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/request', request.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,153 @@
+<div>
+  <h2 id="page-heading" data-cy="HandoffHeading">
+    <span jhiTranslate="teamprojectApp.handoff.home.title">Handoffs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="teamprojectApp.handoff.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-handoff"
+        [routerLink]="['/handoff/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="teamprojectApp.handoff.home.createLabel"> Create a new Handoff </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="handoffs?.length === 0">
+    <span jhiTranslate="teamprojectApp.handoff.home.notFound">No Handoffs found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="handoffs && handoffs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="state">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.handoff.state">State</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="startTime">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.handoff.startTime">Start Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="endTime">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.handoff.endTime">End Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="rateToGiver.id">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.handoff.rateToGiver">Rate To Giver</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="rateToReceiver.id">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.handoff.rateToReceiver">Rate To Receiver</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="giver.login">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.handoff.giver">Giver</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="receiver.login">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.handoff.receiver">Receiver</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="item.id">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.handoff.item">Item</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let handoff of handoffs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/handoff', handoff.id, 'view']">{{ handoff.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'teamprojectApp.HandoffState.' + handoff.state }}">{{ handoff.state }}</td>
+          <td>{{ handoff.startTime | formatMediumDatetime }}</td>
+          <td>{{ handoff.endTime | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="handoff.rateToGiver">
+              <a [routerLink]="['/rate-record', handoff.rateToGiver.id, 'view']">{{ handoff.rateToGiver.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="handoff.rateToReceiver">
+              <a [routerLink]="['/rate-record', handoff.rateToReceiver.id, 'view']">{{ handoff.rateToReceiver.id }}</a>
+            </div>
+          </td>
+          <td>
+            {{ handoff.giver?.login }}
+          </td>
+          <td>
+            {{ handoff.receiver?.login }}
+          </td>
+          <td>
+            <div *ngIf="handoff.item">
+              <a [routerLink]="['/item', handoff.item.id, 'view']">{{ handoff.item.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/handoff', handoff.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/handoff', handoff.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(handoff)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

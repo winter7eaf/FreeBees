@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="handoff">
+      <h2 data-cy="handoffDetailsHeading"><span jhiTranslate="teamprojectApp.handoff.detail.title">Handoff</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ handoff.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.handoff.state">State</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'teamprojectApp.HandoffState.' + handoff.state }}">{{ handoff.state }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.handoff.startTime">Start Time</span></dt>
+        <dd>
+          <span>{{ handoff.startTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.handoff.endTime">End Time</span></dt>
+        <dd>
+          <span>{{ handoff.endTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.handoff.rateToGiver">Rate To Giver</span></dt>
+        <dd>
+          <div *ngIf="handoff.rateToGiver">
+            <a [routerLink]="['/rate-record', handoff.rateToGiver.id, 'view']">{{ handoff.rateToGiver.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.handoff.rateToReceiver">Rate To Receiver</span></dt>
+        <dd>
+          <div *ngIf="handoff.rateToReceiver">
+            <a [routerLink]="['/rate-record', handoff.rateToReceiver.id, 'view']">{{ handoff.rateToReceiver.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.handoff.giver">Giver</span></dt>
+        <dd>
+          <span>{{ handoff.giver?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.handoff.receiver">Receiver</span></dt>
+        <dd>
+          <span>{{ handoff.receiver?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.handoff.item">Item</span></dt>
+        <dd>
+          <div *ngIf="handoff.item">
+            <a [routerLink]="['/item', handoff.item.id, 'view']">{{ handoff.item.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/handoff', handoff.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

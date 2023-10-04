@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="item">
+      <h2 data-cy="itemDetailsHeading"><span jhiTranslate="teamprojectApp.item.detail.title">Item</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ item.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.item.title">Title</span></dt>
+        <dd>
+          <span>{{ item.title }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.item.description">Description</span></dt>
+        <dd>
+          <span>{{ item.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.item.condition">Condition</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'teamprojectApp.ItemCondition.' + item.condition }}">{{ item.condition }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.item.image">Image</span></dt>
+        <dd>
+          <div *ngIf="item.image">
+            <a (click)="openFile(item.image, item.imageContentType)">
+              <img [src]="'data:' + item.imageContentType + ';base64,' + item.image" style="max-width: 100%" alt="item image" />
+            </a>
+            {{ item.imageContentType }}, {{ byteSize(item.image) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.item.postcode">Postcode</span></dt>
+        <dd>
+          <span>{{ item.postcode }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.item.uploadTime">Upload Time</span></dt>
+        <dd>
+          <span>{{ item.uploadTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.item.givenTime">Given Time</span></dt>
+        <dd>
+          <span>{{ item.givenTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.item.state">State</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'teamprojectApp.ItemState.' + item.state }}">{{ item.state }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.item.giver">Giver</span></dt>
+        <dd>
+          <span>{{ item.giver?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.item.receiver">Receiver</span></dt>
+        <dd>
+          <span>{{ item.receiver?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.item.tag">Tag</span></dt>
+        <dd>
+          <span *ngFor="let tag of item.tags; let last = last">
+            <a [routerLink]="['/tag', tag.id, 'view']">{{ tag.name }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/item', item.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

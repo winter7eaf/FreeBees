@@ -1,0 +1,128 @@
+entity UserProfile {
+    description TextBlob
+    postcode String minlength(3) maxlength(12) pattern(/^(GIR 0AA|[A-PR-UWYZ][A-HK-Y]?[0-9][ABEHMNPRVWXY0-9]? {0,1}[0-9][ABD-HJLNP-UW-Z]{2})$/)
+}
+entity UserRate {
+    rateAsGiver Integer required min(0) max(10)
+    rateAsReceiver Integer required min(0) max(10)
+}
+entity RateRecord {
+    rateValue Integer required min(0) max(11)
+}
+entity Item {
+    title String required minlength(3)
+    description TextBlob required
+    condition ItemCondition required
+    image ImageBlob required
+    //  category ItemCategory
+    postcode String required minlength(3) maxlength(12) pattern(/^(GIR 0AA|[A-PR-UWYZ][A-HK-Y]?[0-9][ABEHMNPRVWXY0-9]? {0,1}[0-9][ABD-HJLNP-UW-Z]{2})$/)
+    uploadTime ZonedDateTime required
+    givenTime ZonedDateTime
+    state ItemState required
+}
+entity ItemImage {
+    image ImageBlob required maxbytes(5242880)
+}
+entity Tag {
+    name String unique required minlength(2)
+}
+entity Request {
+    type RequestType required
+    state RequestState required
+    sentTime ZonedDateTime required
+    expiryTime ZonedDateTime required
+    responseTime ZonedDateTime
+}
+entity Handoff {
+    state HandoffState required
+    startTime ZonedDateTime required
+    endTime ZonedDateTime
+}
+
+entity CharityUser {
+    charityName String
+    description TextBlob
+    logoURL String
+    website String
+}
+
+enum ItemCondition {
+    NEW,
+    USED_LIKE_NEW,
+    USED_ACCEPTABLE
+}
+//enum ItemCategory {
+//  FURNITURE,
+//  KITCHEN,
+//  ELECTRONICS,
+//  CLOTHING,
+//  BOOK,
+//  SPORTS,
+//  MUSICAL,
+//  OFFICE,
+//  BATHROOM,
+//  TOYS,
+//  PHOTOGRAPHY,
+//  ARTS_AND_CRAFTS,
+//  COLLECTIBLES,
+//  OTHER
+//}
+enum ItemState {
+    AVAILABLE,
+    LOCKED,
+    GIVEN,
+    CANCELLED
+}
+enum RequestType {
+    REQUEST_TO_GIVE,
+    REQUEST_TO_RECEIVE
+}
+enum RequestState {
+    PENDING,
+    EXPIRED,
+    REJECTED,
+    ACCEPTED
+}
+enum HandoffState {
+    PROGRESSING,
+    LOCKED,
+    CANCELLED,
+    COMPLETED
+}
+
+relationship OneToOne {
+    UserProfile{user(login) required} to User
+    UserRate{user(login) required} to User
+
+    Handoff{rateToGiver required} to RateRecord
+    Handoff{rateToReceiver required} to RateRecord
+
+    CharityUser{user} to User
+}
+
+relationship ManyToOne {
+    Item{giver(login) required} to User
+    Item{receiver(login)} to User
+
+    //Change to unidirectional (Item (1) -----> (*) ItemImage) if want to have a small performance gain
+    //ref:https://www.jhipster.tech/managing-relationships/#a-unidirectional-one-to-many-relationship
+    ItemImage{item required} to Item{image required}
+
+    Request{requester(login) required} to User
+    Request{requestee(login) required} to User
+    Request{item required} to Item{request}
+
+    Handoff{giver(login) required} to User
+    Handoff{receiver(login) required} to User
+    Handoff{item required} to Item{handoff}
+
+    RateRecord{rater(login) required} to User
+    RateRecord{ratee(login) required} to User
+    RateRecord{handoffRef required} to Handoff
+}
+
+relationship ManyToMany {
+    Item{tag(name)} to Tag{item}
+//    Tag{item} to Item{tag(name)}
+    UserProfile{lookingfor(name)} to Tag{user}
+}

@@ -1,0 +1,162 @@
+<div>
+  <h2 id="page-heading" data-cy="ItemHeading">
+    <span jhiTranslate="teamprojectApp.item.home.title">Items</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="teamprojectApp.item.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-item"
+        [routerLink]="['/item/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="teamprojectApp.item.home.createLabel"> Create a new Item </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="items?.length === 0">
+    <span jhiTranslate="teamprojectApp.item.home.notFound">No Items found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="items && items.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="title">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.item.title">Title</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.item.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="condition">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.item.condition">Condition</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="image">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.item.image">Image</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="postcode">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.item.postcode">Postcode</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="uploadTime">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.item.uploadTime">Upload Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="givenTime">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.item.givenTime">Given Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="state">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.item.state">State</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="giver.login">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.item.giver">Giver</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="receiver.login">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.item.receiver">Receiver</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tag.name">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.item.tag">Tag</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/item', item.id, 'view']">{{ item.id }}</a>
+          </td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.description }}</td>
+          <td jhiTranslate="{{ 'teamprojectApp.ItemCondition.' + item.condition }}">{{ item.condition }}</td>
+          <td>
+            <a *ngIf="item.image" (click)="openFile(item.image, item.imageContentType)">
+              <img [src]="'data:' + item.imageContentType + ';base64,' + item.image" style="max-height: 30px" alt="item image" />
+            </a>
+            <span *ngIf="item.image">{{ item.imageContentType }}, {{ byteSize(item.image) }}</span>
+          </td>
+          <td>{{ item.postcode }}</td>
+          <td>{{ item.uploadTime | formatMediumDatetime }}</td>
+          <td>{{ item.givenTime | formatMediumDatetime }}</td>
+          <td jhiTranslate="{{ 'teamprojectApp.ItemState.' + item.state }}">{{ item.state }}</td>
+          <td>
+            {{ item.giver?.login }}
+          </td>
+          <td>
+            {{ item.receiver?.login }}
+          </td>
+          <td>
+            <span *ngFor="let tag of item.tags; let last = last">
+              <a class="form-control-static" [routerLink]="['/tag', tag.id, 'view']">{{ tag.name }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/item', item.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/item', item.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(item)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

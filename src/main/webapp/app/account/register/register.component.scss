@@ -1,0 +1,9 @@
+.nameRow {
+  display: flex;
+  gap: 1rem;
+}
+
+.nameRowItem {
+  flex-grow: 1;
+  margin-bottom: 1rem;
+}

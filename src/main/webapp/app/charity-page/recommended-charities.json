@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "charityName": "British Red Cross",
+    "description": "Supports people in crisis, both in the UK and around the world.",
+    "logoURL": "https://scontent-lhr8-2.xx.fbcdn.net/v/t39.30808-6/281400821_369477745210455_5394498853112267572_n.png?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=hdlgBWeJA9wAX8r8dqw&_nc_ht=scontent-lhr8-2.xx&oh=00_AfDgjbhODOpkNkPyI6pdVo8wt6UFGoMTPMY4InhyH3ZTeA&oe=6453A633",
+    "website": "https://www.redcross.org.uk"
+  },
+  {
+    "id": 2,
+    "charityName": "Oxfam",
+    "description": "Works to end global poverty and provides support during humanitarian crises.",
+    "logoURL": "https://wbg.org.uk/wp-content/uploads/2020/04/Oxfam-Logo-640x640.jpg",
+    "website": "https://www.oxfam.org.uk"
+  },
+  {
+    "id": 3,
+    "charityName": "Salvation Army",
+    "description": "A worldwide Christian church and registered charity providing social welfare and support.",
+    "logoURL": "https://upload.wikimedia.org/wikipedia/en/c/c4/The_Salvation_Army.svg",
+    "website": "https://www.salvationarmy.org.uk"
+  },
+  {
+    "id": 4,
+    "charityName": "Sue Ryder",
+    "description": "Provides palliative, neurological, and bereavement support through hospice care and retail shops.",
+    "logoURL": "https://www.sueryder.org/sites/default/files/2018-09/img200-fb-logo.png",
+    "website": "https://www.sueryder.org"
+  },
+  {
+    "id": 5,
+    "charityName": "Shelter",
+    "description": "Helps people struggling with bad housing or homelessness.",
+    "logoURL": "https://scontent-lhr8-2.xx.fbcdn.net/v/t39.30808-6/285078160_384082013762543_6181545742304435398_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Gq-UHAnWYRwAX_IKzwt&_nc_ht=scontent-lhr8-2.xx&oh=00_AfAmCyYdP1gtTXpFcGqPS9rzmcoE7Af5YbSpbIZTWjuQIg&oe=6453BDC8",
+    "website": "https://england.shelter.org.uk"
+  },
+  {
+    "id": 6,
+    "charityName": "Emmaus",
+    "description": "Supports people to work their way out of homelessness, providing meaningful work and a stable home.",
+    "logoURL": "https://media.licdn.com/dms/image/C4D0BAQHe5-4uHGplIA/company-logo_200_200/0/1643288353590?e=1691020800&v=beta&t=7ktDRFAEikElOthzG_9NRtt-R5Tk2ay-nIUBnkQB-GA",
+    "website": "https://emmaus.org.uk"
+  },
+  {
+    "id": 8,
+    "charityName": "British Heart Foundation",
+    "description": "A leading charity in the UK for research into heart and circulatory diseases.",
+    "logoURL": "http://files.datathistle.com/images/2016/08/22/british-heart-foundation-furniture-and-electrical-LST185602.jpg",
+    "website": "https://www.bhf.org.uk"
+  },
+  {
+    "id": 9,
+    "charityName": "St. Vincent de Paul Society",
+    "description": "Provides practical assistance and support to those in need, regardless of background or beliefs.",
+    "logoURL": "https://www.csan.org.uk/wp-content/uploads/2018/08/SVP-Jan-2016-web.jpg",
+    "website": "https://www.svp.org.uk"
+  }
+]

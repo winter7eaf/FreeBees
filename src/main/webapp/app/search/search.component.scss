@@ -1,0 +1,113 @@
+/* ==========================================================================
+Main page styles
+========================================================================== */
+
+// I created my own styles for the search page
+
+a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 300;
+}
+
+button {
+  border-radius: 20px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.grid-item {
+  display: inline-flex;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.grid-item-image {
+  max-height: 200px;
+  max-width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin: 10px;
+}
+
+.grid-item-image:hover {
+  filter: brightness(60%);
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+}
+
+.grid-item-text-fields {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  flex-direction: column;
+  flex: 1;
+  margin: 10px;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  background-color: white;
+  border: 1px solid gray;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  z-index: 1;
+  display: none;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.select {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.select option {
+  background-color: white;
+  color: black;
+}
+
+.select:focus {
+  outline: none;
+}
+
+.select:focus + .dropdown-toggle {
+  border-color: blue;
+}
+
+.select:valid + .dropdown-toggle {
+  border-color: green;
+}
+
+.select:valid option:checked {
+  background-color: lightblue;
+}
+:host ::ng-deep {
+  .costum-dropdown .ng-multiselect-dropdown {
+    width: 100pt !important;
+  }
+}

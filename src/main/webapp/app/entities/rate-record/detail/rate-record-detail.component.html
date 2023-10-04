@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="rateRecord">
+      <h2 data-cy="rateRecordDetailsHeading"><span jhiTranslate="teamprojectApp.rateRecord.detail.title">Rate Record</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ rateRecord.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.rateRecord.rateValue">Rate Value</span></dt>
+        <dd>
+          <span>{{ rateRecord.rateValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.rateRecord.rater">Rater</span></dt>
+        <dd>
+          <span>{{ rateRecord.rater?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.rateRecord.ratee">Ratee</span></dt>
+        <dd>
+          <span>{{ rateRecord.ratee?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.rateRecord.handoffRef">Handoff Ref</span></dt>
+        <dd>
+          <div *ngIf="rateRecord.handoffRef">
+            <a [routerLink]="['/handoff', rateRecord.handoffRef.id, 'view']">{{ rateRecord.handoffRef.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/rate-record', rateRecord.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

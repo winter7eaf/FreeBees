@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Handoff.
+    -->
+    <changeSet id="20230424192233-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="rate_to_giver_id"
+                                 baseTableName="handoff"
+                                 constraintName="fk_handoff__rate_to_giver_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="rate_record"/>
+
+        <addForeignKeyConstraint baseColumnNames="rate_to_receiver_id"
+                                 baseTableName="handoff"
+                                 constraintName="fk_handoff__rate_to_receiver_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="rate_record"/>
+
+        <addForeignKeyConstraint baseColumnNames="giver_id"
+                                 baseTableName="handoff"
+                                 constraintName="fk_handoff__giver_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="receiver_id"
+                                 baseTableName="handoff"
+                                 constraintName="fk_handoff__receiver_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="item_id"
+                                 baseTableName="handoff"
+                                 constraintName="fk_handoff__item_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="item"/>
+    </changeSet>
+</databaseChangeLog>

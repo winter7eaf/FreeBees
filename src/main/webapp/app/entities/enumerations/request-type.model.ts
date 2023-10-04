@@ -1,0 +1,5 @@
+export enum RequestType {
+  REQUEST_TO_GIVE = 'REQUEST_TO_GIVE',
+
+  REQUEST_TO_RECEIVE = 'REQUEST_TO_RECEIVE',
+}

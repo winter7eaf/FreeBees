@@ -1,0 +1,11 @@
+{
+  "teamprojectApp": {
+    "RequestState": {
+      "null": "",
+      "PENDING": "PENDING",
+      "EXPIRED": "EXPIRED",
+      "REJECTED": "REJECTED",
+      "ACCEPTED": "ACCEPTED"
+    }
+  }
+}

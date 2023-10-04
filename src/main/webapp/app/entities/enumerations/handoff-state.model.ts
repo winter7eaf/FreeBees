@@ -1,0 +1,9 @@
+export enum HandoffState {
+  PROGRESSING = 'PROGRESSING',
+
+  LOCKED = 'LOCKED',
+
+  CANCELLED = 'CANCELLED',
+
+  COMPLETED = 'COMPLETED',
+}

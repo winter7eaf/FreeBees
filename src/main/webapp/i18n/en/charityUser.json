@@ -1,0 +1,28 @@
+{
+  "teamprojectApp": {
+    "charityUser": {
+      "home": {
+        "title": "Charity Users",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Charity User",
+        "createOrEditLabel": "Create or edit a Charity User",
+        "notFound": "No Charity Users found"
+      },
+      "created": "A new Charity User is created with identifier {{ param }}",
+      "updated": "A Charity User is updated with identifier {{ param }}",
+      "deleted": "A Charity User is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Charity User {{ id }}?"
+      },
+      "detail": {
+        "title": "Charity User"
+      },
+      "id": "ID",
+      "charityName": "Charity Name",
+      "description": "Description",
+      "logoURL": "Logo URL",
+      "website": "Website",
+      "user": "User"
+    }
+  }
+}

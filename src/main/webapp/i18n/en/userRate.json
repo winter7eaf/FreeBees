@@ -1,0 +1,26 @@
+{
+  "teamprojectApp": {
+    "userRate": {
+      "home": {
+        "title": "User Rates",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new User Rate",
+        "createOrEditLabel": "Create or edit a User Rate",
+        "notFound": "No User Rates found"
+      },
+      "created": "A new User Rate is created with identifier {{ param }}",
+      "updated": "A User Rate is updated with identifier {{ param }}",
+      "deleted": "A User Rate is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete User Rate {{ id }}?"
+      },
+      "detail": {
+        "title": "User Rate"
+      },
+      "id": "ID",
+      "rateAsGiver": "Rate As Giver",
+      "rateAsReceiver": "Rate As Receiver",
+      "user": "User"
+    }
+  }
+}

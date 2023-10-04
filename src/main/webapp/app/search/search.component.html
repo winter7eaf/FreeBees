@@ -1,0 +1,117 @@
+<jhi-alert-error></jhi-alert-error>
+<div style="margin: 20px">
+  <form class="d-flex align-items-center">
+    <input class="flex-grow-1 rounded-pill me-2" type="text" [(ngModel)]="searchQuery" name="first" placeholder="Search items..." />
+    <input type="submit" [hidden]="true" (click)="searchItems()" />
+    <button class="btn btn-info me-2" (click)="searchItems()">Search</button>
+
+    <button class="btn btn-info me-2" (click)="openPopup()">Filter</button>
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{ display: displayStyle }">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Filter by...</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div style="width: 75%">
+                Tags:
+                <ng-multiselect-dropdown
+                  aria-label="multiselect-item"
+                  [placeholder]="'Tags...'"
+                  [settings]="dropDownSettings"
+                  [data]="tags"
+                  [(ngModel)]="filterTags"
+                  name="filterTags"
+                  (onSelect)="onItemSelect($event)"
+                  (onDeSelect)="onItemUnselect($event)"
+                >
+                </ng-multiselect-dropdown>
+              </div>
+              <p>Note: after applying filters, clean the tags bar manually.</p>
+              Item Condition:
+              <br />
+              <select
+                style="width: 75%"
+                class="flex-grow-1 rounded-pill me-2"
+                [(ngModel)]="filterCondition"
+                name="conditonBar"
+                data-placeholder="Item Condition..."
+              >
+                <option [ngValue]="null"></option>
+                <option *ngFor="let itemCondition of itemCondition" [value]="itemCondition">
+                  {{ 'teamprojectApp.ItemCondition.' + itemCondition | translate }}
+                </option>
+              </select>
+              <br /><br />
+              Postcode:
+              <br />
+              <input
+                class="flex-grow-1 rounded-pill me-2"
+                style="width: 75%"
+                type="text"
+                [(ngModel)]="filterPostcode"
+                name="postcodeBar"
+                placeholder="Postcode..."
+              />
+              <input type="submit" [hidden]="true" (click)="filterBy()" />
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="closePopup()">Close</button>
+            <button type="button" class="btn btn-info me-2" (click)="filterBy()">Apply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- All the commented code below is for NavBar options that were here before and that I didn't want to completely delete because they have usefull feature we might want to use in the future. -->
+
+  <!-- <div class="d-flex justify-content-between">
+
+      <form class="d-flex align-item-center">
+        <input type="text" [(ngModel)]="searchQuery" name="first" placeholder="Search items...">
+        <button type="button" (click)="searchItems()" >Search</button>
+      </form>
+
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="teamprojectApp.item.home.refreshListLabel">Refresh list</span>
+      </button>
+
+    </div> -->
+  <div style="margin-top: 10px" class="alert alert-warning" id="no-result" *ngIf="items.length === 0 || filteredItems.length === 0">
+    <span jhiTranslate="teamprojectApp.item.home.notFound">No Items found</span>
+  </div>
+  <div class="btn btn-group">
+    Sort by:
+    <button class="btn btn-info me-2" (click)="sortByTitleLater()">Title</button>
+    <button class="btn btn-info me-2" (click)="sortByPostcode()">Postcode</button>
+    <button class="btn btn-info me-2" (click)="sortByTags()">Tags</button>
+  </div>
+  <div class="grid-container" id="entities" *ngIf="items && items.length > 0">
+    <div class="grid-item" *ngFor="let item of filteredItems; trackBy: trackId">
+      <div class="grid-item-image">
+        <a *ngIf="item.image" (click)="openFile(item.image, item.imageContentType)">
+          <img [src]="'data:' + item.imageContentType + ';base64,' + item.image" alt="item image" />
+        </a>
+      </div>
+
+      <div class="grid-item-text-fields">
+        <div><span style="font-weight: bold">Title: </span>{{ item.title }}</div>
+        <div><span style="font-weight: bold">Condition: </span>{{ item.condition }}</div>
+        <div><span style="font-weight: bold">Postcode: </span> {{ item.postcode }}</div>
+
+        <div style="font-weight: bold">
+          Tags:
+          <span *ngFor="let tag of item.tags; let last = last">
+            <a class="form-control-static" [routerLink]="['/tag', tag.id, 'view']">{{ tag.name }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </div>
+
+        <button class="btn btn-primary" [routerLink]="['/item', item.id, 'view']">Learn More</button>
+      </div>
+    </div>
+  </div>
+</div>

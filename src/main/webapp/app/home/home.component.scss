@@ -1,0 +1,105 @@
+.rightContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mainImage {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.firstLine {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.logo {
+  width: 8rem;
+  height: 8rem;
+  object-fit: fill;
+  border-radius: 20%;
+  margin-bottom: 0.5rem;
+}
+
+.mainTitle {
+  margin: 0;
+  font-size: 4rem;
+  font-weight: 600;
+}
+
+.subtext {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  font-weight: 400;
+}
+
+.elements {
+  border: 2px solid black;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.elements h3 {
+  font-weight: 500;
+}
+
+.elements h4 {
+  font-weight: 400;
+}
+
+@media screen and (max-width: 1400px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .leftContainer {
+    display: none;
+  }
+
+  .rightContainer {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .elements {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 832px) {
+  .firstLine {
+    gap: 0.75rem;
+  }
+
+  .mainTitle {
+    font-size: 2rem;
+  }
+
+  .logo {
+    width: 5rem;
+    height: 5rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .firstLine {
+    gap: 0;
+  }
+
+  .logo {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .mainTitle {
+    font-size: 1.5rem;
+  }
+}

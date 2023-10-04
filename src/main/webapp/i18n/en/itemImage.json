@@ -1,0 +1,25 @@
+{
+  "teamprojectApp": {
+    "itemImage": {
+      "home": {
+        "title": "Item Images",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Item Image",
+        "createOrEditLabel": "Create or edit a Item Image",
+        "notFound": "No Item Images found"
+      },
+      "created": "A new Item Image is created with identifier {{ param }}",
+      "updated": "A Item Image is updated with identifier {{ param }}",
+      "deleted": "A Item Image is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Item Image {{ id }}?"
+      },
+      "detail": {
+        "title": "Item Image"
+      },
+      "id": "ID",
+      "image": "Image",
+      "item": "Item"
+    }
+  }
+}

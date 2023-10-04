@@ -1,0 +1,11 @@
+{
+  "teamprojectApp": {
+    "ItemState": {
+      "null": "",
+      "AVAILABLE": "AVAILABLE",
+      "LOCKED": "LOCKED",
+      "GIVEN": "GIVEN",
+      "CANCELLED": "CANCELLED"
+    }
+  }
+}

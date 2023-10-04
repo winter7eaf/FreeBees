@@ -1,0 +1,31 @@
+{
+  "teamprojectApp": {
+    "handoff": {
+      "home": {
+        "title": "Handoffs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Handoff",
+        "createOrEditLabel": "Create or edit a Handoff",
+        "notFound": "No Handoffs found"
+      },
+      "created": "A new Handoff is created with identifier {{ param }}",
+      "updated": "A Handoff is updated with identifier {{ param }}",
+      "deleted": "A Handoff is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Handoff {{ id }}?"
+      },
+      "detail": {
+        "title": "Handoff"
+      },
+      "id": "ID",
+      "state": "State",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "rateToGiver": "Rate To Giver",
+      "rateToReceiver": "Rate To Receiver",
+      "giver": "Giver",
+      "receiver": "Receiver",
+      "item": "Item"
+    }
+  }
+}

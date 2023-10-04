@@ -1,0 +1,103 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 15px;
+  margin-top: 20px;
+}
+
+.gridItem {
+  display: inline-flex;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.gridItemImage {
+  max-height: 250px;
+  max-width: 200px;
+  border: 3px solid #ccc;
+  border-radius: 20px;
+  margin: 10px;
+}
+
+.gridItemImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.gridItemTextField {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  flex-direction: column;
+  flex: 1;
+  margin: 10px;
+}
+
+.websiteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  text-decoration: none;
+  background-color: #3742fa;
+  color: white;
+  padding: 5px;
+  border-radius: 1rem;
+  border: 3px solid #3742fa;
+  margin-bottom: 3px;
+}
+
+.websiteButton:hover {
+  background-color: white;
+  color: #3742fa;
+}
+
+.websiteButton p {
+  margin: 0;
+}
+
+.partnerCharity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  color: orange;
+  border: 2px solid orange;
+  padding: 4px;
+  font-weight: 500;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
+
+.sectionContainer {
+  border: 3px solid grey;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.donate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

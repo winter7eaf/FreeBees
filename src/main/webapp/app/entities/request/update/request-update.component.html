@@ -1,0 +1,202 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-request-heading" data-cy="RequestCreateUpdateHeading" jhiTranslate="teamprojectApp.request.home.createOrEditLabel">
+        Create or edit a Request
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.request.type" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'teamprojectApp.RequestType.null' | translate }}</option>
+            <option *ngFor="let requestType of requestTypeValues" [value]="requestType">
+              {{ 'teamprojectApp.RequestType.' + requestType | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('type')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.request.state" for="field_state">State</label>
+          <select class="form-control" name="state" formControlName="state" id="field_state" data-cy="state">
+            <option [ngValue]="null">{{ 'teamprojectApp.RequestState.null' | translate }}</option>
+            <option *ngFor="let requestState of requestStateValues" [value]="requestState">
+              {{ 'teamprojectApp.RequestState.' + requestState | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('state')!.invalid && (editForm.get('state')!.dirty || editForm.get('state')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('state')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.request.sentTime" for="field_sentTime">Sent Time</label>
+          <div class="d-flex">
+            <input
+              id="field_sentTime"
+              data-cy="sentTime"
+              type="datetime-local"
+              class="form-control"
+              name="sentTime"
+              formControlName="sentTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('sentTime')!.invalid && (editForm.get('sentTime')!.dirty || editForm.get('sentTime')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('sentTime')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('sentTime')?.errors?.datetimelocal"
+              jhiTranslate="entity.validation.datetimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.request.expiryTime" for="field_expiryTime">Expiry Time</label>
+          <div class="d-flex">
+            <input
+              id="field_expiryTime"
+              data-cy="expiryTime"
+              type="datetime-local"
+              class="form-control"
+              name="expiryTime"
+              formControlName="expiryTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('expiryTime')!.invalid && (editForm.get('expiryTime')!.dirty || editForm.get('expiryTime')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('expiryTime')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('expiryTime')?.errors?.datetimelocal"
+              jhiTranslate="entity.validation.datetimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.request.responseTime" for="field_responseTime">Response Time</label>
+          <div class="d-flex">
+            <input
+              id="field_responseTime"
+              data-cy="responseTime"
+              type="datetime-local"
+              class="form-control"
+              name="responseTime"
+              formControlName="responseTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.request.requester" for="field_requester">Requester</label>
+          <select
+            class="form-control"
+            id="field_requester"
+            data-cy="requester"
+            name="requester"
+            formControlName="requester"
+            [compareWith]="compareUser"
+          >
+            <option *ngIf="!editForm.get('requester')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.login }}</option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['requester'])!.invalid && (editForm.get(['requester'])!.dirty || editForm.get(['requester'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['requester'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.request.requestee" for="field_requestee">Requestee</label>
+          <select
+            class="form-control"
+            id="field_requestee"
+            data-cy="requestee"
+            name="requestee"
+            formControlName="requestee"
+            [compareWith]="compareUser"
+          >
+            <option *ngIf="!editForm.get('requestee')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.login }}</option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['requestee'])!.invalid && (editForm.get(['requestee'])!.dirty || editForm.get(['requestee'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['requestee'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.request.item" for="field_item">Item</label>
+          <select class="form-control" id="field_item" data-cy="item" name="item" formControlName="item" [compareWith]="compareItem">
+            <option *ngIf="editForm.get(['item'])!.value == null" [ngValue]="null" selected></option>
+            <option [ngValue]="itemOption" *ngFor="let itemOption of itemsSharedCollection">{{ itemOption.id }}</option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['item'])!.invalid && (editForm.get(['item'])!.dirty || editForm.get(['item'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['item'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

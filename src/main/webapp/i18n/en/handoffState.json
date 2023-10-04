@@ -1,0 +1,11 @@
+{
+  "teamprojectApp": {
+    "HandoffState": {
+      "null": "",
+      "PROGRESSING": "PROGRESSING",
+      "LOCKED": "LOCKED",
+      "CANCELLED": "CANCELLED",
+      "COMPLETED": "COMPLETED"
+    }
+  }
+}
